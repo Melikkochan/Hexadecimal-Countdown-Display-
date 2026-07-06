@@ -1,0 +1,64 @@
+
+const int Eseg = 2;     
+const int Dseg = 3;   
+const int Cseg = 4;   
+const int DPseg = 5;  
+const int Bseg = 6;   
+const int Aseg = 7;   
+const int Fseg = 8;   
+const int Gseg = 9;   
+
+byte hexDigits[16][7] = {
+
+  {1,1,1,1,1,1,0}, // 0
+  {0,1,1,0,0,0,0}, // 1
+  {1,1,0,1,1,0,1}, // 2
+  {1,1,1,1,0,0,1}, // 3
+  {0,1,1,0,0,1,1}, // 4
+  {1,0,1,1,0,1,1}, // 5
+  {1,0,1,1,1,1,1}, // 6
+  {1,1,1,0,0,0,0}, // 7
+  {1,1,1,1,1,1,1}, // 8
+  {1,1,1,1,0,1,1}, // 9
+  {1,1,1,0,1,1,1}, // A
+  {0,0,1,1,1,1,1}, // b
+  {1,0,0,1,1,1,0}, // C
+  {0,1,1,1,1,0,1}, // d
+  {1,0,0,1,1,1,1}, // E
+  {1,0,0,0,1,1,1}  // F
+};
+
+void setup() {
+
+  pinMode(Aseg, OUTPUT);
+  pinMode(Bseg, OUTPUT);
+  pinMode(Cseg, OUTPUT);
+  pinMode(Dseg, OUTPUT);
+  pinMode(Eseg, OUTPUT);
+  pinMode(Fseg, OUTPUT);
+  pinMode(Gseg, OUTPUT);
+  pinMode(DPseg, OUTPUT);
+
+  digitalWrite(DPseg, LOW); 
+}
+
+void displayDigit(int num) {
+  digitalWrite(Aseg, !hexDigits[num][0]); 
+  digitalWrite(Bseg, !hexDigits[num][1]);
+  digitalWrite(Cseg, !hexDigits[num][2]);
+  digitalWrite(Dseg, !hexDigits[num][3]);
+  digitalWrite(Eseg, !hexDigits[num][4]);
+  digitalWrite(Fseg, !hexDigits[num][5]);
+  digitalWrite(Gseg, !hexDigits[num][6]);
+}
+
+void loop() {
+
+
+  for(int i = 15; i >= 0; i--) {
+
+    displayDigit(i);
+
+    delay(1000);
+  }
+}
